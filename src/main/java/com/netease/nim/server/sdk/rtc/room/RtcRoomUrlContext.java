@@ -21,7 +21,7 @@ public class RtcRoomUrlContext {
 
     static final String ADD_MEMBER_TO_KICKLIST_V3 = "/v3/api/kicklist/members";
 
-    static final String SET_MEMBER_BAN_STATUS_V2 = "/v2/api/rooms/{cid}/members/{uid}/ban";
+    static final String SET_MEMBER_BAN_STATUS_V2 = "/v2/api/right/change";
 
-    static final String SET_MEMBER_BAN_STATUS_V3 = "/v3/api/rooms/members/ban";
+    static final String SET_MEMBER_BAN_STATUS_V3 = "/v2/api/right/change";
 }

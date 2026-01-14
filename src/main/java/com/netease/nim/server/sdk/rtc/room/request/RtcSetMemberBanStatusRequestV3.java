@@ -7,7 +7,10 @@ package com.netease.nim.server.sdk.rtc.room.request;
 public class RtcSetMemberBanStatusRequestV3 {
     private String cname;
     private Number uid;
-    private Boolean isBanned;
+    private Number audioRight;
+    private Number audioDuration;
+    private Number videoRight;
+    private Number videoDuration;
 
     public String getCname() {
         return cname;
@@ -25,11 +28,35 @@ public class RtcSetMemberBanStatusRequestV3 {
         this.uid = uid;
     }
 
-    public Boolean getIsBanned() {
-        return isBanned;
+    public Number getAudioRight() {
+        return audioRight;
     }
 
-    public void setIsBanned(Boolean isBanned) {
-        this.isBanned = isBanned;
+    public void setAudioRight(Number audioRight) {
+        this.audioRight = audioRight;
+    }
+
+    public Number getAudioDuration() {
+        return audioDuration;
+    }
+
+    public void setAudioDuration(Number audioDuration) {
+        this.audioDuration = audioDuration;
+    }
+
+    public Number getVideoRight() {
+        return videoRight;
+    }
+
+    public void setVideoRight(Number videoRight) {
+        this.videoRight = videoRight;
+    }
+
+    public Number getVideoDuration() {
+        return videoDuration;
+    }
+
+    public void setVideoDuration(Number videoDuration) {
+        this.videoDuration = videoDuration;
     }
 }

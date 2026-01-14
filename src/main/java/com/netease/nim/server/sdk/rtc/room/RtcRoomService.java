@@ -201,13 +201,8 @@ public class RtcRoomService implements IRtcRoomService {
 
     @Override
     public RtcResult<RtcSetMemberBanStatusResponse> setMemberBanStatusV2(RtcSetMemberBanStatusRequestV2 request) {
-        String path = RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V2.replace("{cid}", String.valueOf(request.getCid()))
-                .replace("{uid}", String.valueOf(request.getUid()));
-        Map<String, String> queryString = new HashMap<>();
-        if (request.getIsBanned() != null) {
-            queryString.put("isBanned", request.getIsBanned().toString());
-        }
-        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V2, path, queryString, null);
+        String body = JSONObject.toJSONString(request);
+        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V2, null, body);
         int httpCode = response.getHttpCode();
         int code = 0;
         String requestId = null;
@@ -228,13 +223,8 @@ public class RtcRoomService implements IRtcRoomService {
     public RtcResult<RtcSetMemberBanStatusResponse> setMemberBanStatusV3(RtcSetMemberBanStatusRequestV3 request) {
         Map<String, String> queryString = new HashMap<>();
         queryString.put("cname", request.getCname());
-        Number uid = request.getUid();
-        queryString.put("uid", uid.toString());
-        Boolean isBanned = request.getIsBanned();
-        if (isBanned != null) {
-            queryString.put("isBanned", isBanned.toString());
-        }
-        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V3, queryString, null);
+        String body = JSONObject.toJSONString(request);
+        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V3, queryString, body);
         int httpCode = response.getHttpCode();
         int code = 0;
         String requestId = null;

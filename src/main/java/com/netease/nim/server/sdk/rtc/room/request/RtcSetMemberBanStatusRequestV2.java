@@ -5,15 +5,18 @@ package com.netease.nim.server.sdk.rtc.room.request;
  * See https://doc.yunxin.163.com/nertc/server-apis/TM3MzM4MzM?platform=server
  */
 public class RtcSetMemberBanStatusRequestV2 {
-    private Long cid;
+    private Number cid;
     private Number uid;
-    private Boolean isBanned;
+    private Number audioRight;
+    private Number audioDuration;
+    private Number videoRight;
+    private Number videoDuration;
 
-    public Long getCid() {
+    public Number getCid() {
         return cid;
     }
 
-    public void setCid(Long cid) {
+    public void setCid(Number cid) {
         this.cid = cid;
     }
 
@@ -25,11 +28,35 @@ public class RtcSetMemberBanStatusRequestV2 {
         this.uid = uid;
     }
 
-    public Boolean getIsBanned() {
-        return isBanned;
+    public Number getAudioRight() {
+        return audioRight;
     }
 
-    public void setIsBanned(Boolean isBanned) {
-        this.isBanned = isBanned;
+    public void setAudioRight(Number audioRight) {
+        this.audioRight = audioRight;
+    }
+
+    public Number getAudioDuration() {
+        return audioDuration;
+    }
+
+    public void setAudioDuration(Number audioDuration) {
+        this.audioDuration = audioDuration;
+    }
+
+    public Number getVideoRight() {
+        return videoRight;
+    }
+
+    public void setVideoRight(Number videoRight) {
+        this.videoRight = videoRight;
+    }
+
+    public Number getVideoDuration() {
+        return videoDuration;
+    }
+
+    public void setVideoDuration(Number videoDuration) {
+        this.videoDuration = videoDuration;
     }
 }
