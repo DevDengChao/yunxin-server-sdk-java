@@ -23,5 +23,5 @@ public class RtcRoomUrlContext {
 
     static final String MEMBER_RIGHT_CHANGE_V2 = "/v2/api/right/change";
 
-    static final String MEMBER_RIGHT_CHANGE_V3 = "/v2/api/right/change";
+    static final String MEMBER_RIGHT_CHANGE_V3 = "/v3/api/right/change";
 }
