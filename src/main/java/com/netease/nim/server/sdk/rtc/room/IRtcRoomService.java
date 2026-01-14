@@ -6,7 +6,7 @@ import com.netease.nim.server.sdk.rtc.room.response.RtcAddMemberToKicklistRespon
 import com.netease.nim.server.sdk.rtc.room.response.RtcCreateRoomResponse;
 import com.netease.nim.server.sdk.rtc.room.response.RtcGetRoomResponse;
 import com.netease.nim.server.sdk.rtc.room.response.RtcListRoomMembersResponse;
-import com.netease.nim.server.sdk.rtc.room.response.RtcSetMemberBanStatusResponse;
+import com.netease.nim.server.sdk.rtc.room.response.RtcMemberRightChangeResponse;
 
 /**
  * Created by caojiajun on 2025/6/12
@@ -27,7 +27,7 @@ public interface IRtcRoomService {
 
     RtcResult<RtcAddMemberToKicklistResponse> addMemberToKicklistV3(RtcAddMemberToKicklistRequestV3 request);
 
-    RtcResult<RtcSetMemberBanStatusResponse> setMemberBanStatusV2(RtcSetMemberBanStatusRequestV2 request);
+    RtcResult<RtcMemberRightChangeResponse> memberRightChangeV2(RtcMemberRightChangeRequestV2 request);
 
-    RtcResult<RtcSetMemberBanStatusResponse> setMemberBanStatusV3(RtcSetMemberBanStatusRequestV3 request);
+    RtcResult<RtcMemberRightChangeResponse> memberRightChangeV3(RtcMemberRightChangeRequestV3 request);
 }

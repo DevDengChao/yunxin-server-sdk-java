@@ -4,20 +4,20 @@ package com.netease.nim.server.sdk.rtc.room.request;
  *
  * See https://doc.yunxin.163.com/nertc/server-apis/TM3MzM4MzM?platform=server
  */
-public class RtcSetMemberBanStatusRequestV3 {
-    private String cname;
+public class RtcMemberRightChangeRequestV2 {
+    private Number cid;
     private Number uid;
     private Number audioRight;
     private Number audioDuration;
     private Number videoRight;
     private Number videoDuration;
 
-    public String getCname() {
-        return cname;
+    public Number getCid() {
+        return cid;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setCid(Number cid) {
+        this.cid = cid;
     }
 
     public Number getUid() {

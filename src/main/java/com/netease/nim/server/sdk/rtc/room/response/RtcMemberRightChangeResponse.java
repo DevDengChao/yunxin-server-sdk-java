@@ -1,6 +1,6 @@
 package com.netease.nim.server.sdk.rtc.room.response;
 
-public class RtcSetMemberBanStatusResponse {
+public class RtcMemberRightChangeResponse {
     private int code;
     private String requestId;
     private String errmsg;
