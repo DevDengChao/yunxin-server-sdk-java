@@ -10,6 +10,7 @@ import com.netease.nim.server.sdk.rtc.room.response.RtcAddMemberToKicklistRespon
 import com.netease.nim.server.sdk.rtc.room.response.RtcCreateRoomResponse;
 import com.netease.nim.server.sdk.rtc.room.response.RtcGetRoomResponse;
 import com.netease.nim.server.sdk.rtc.room.response.RtcListRoomMembersResponse;
+import com.netease.nim.server.sdk.rtc.room.response.RtcSetMemberBanStatusResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -196,5 +197,57 @@ public class RtcRoomService implements IRtcRoomService {
             msg = response.getData();
         }
         return new RtcResult<>(response.getEndpoint(), code, httpCode, requestId, response.getTraceId(), msg, addMemberToKicklistResponse);
+    }
+
+    @Override
+    public RtcResult<RtcSetMemberBanStatusResponse> setMemberBanStatusV2(RtcSetMemberBanStatusRequestV2 request) {
+        String path = RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V2.replace("{cid}", String.valueOf(request.getCid()))
+                .replace("{uid}", String.valueOf(request.getUid()));
+        Map<String, String> queryString = new HashMap<>();
+        if (request.getIsBanned() != null) {
+            queryString.put("isBanned", request.getIsBanned().toString());
+        }
+        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V2, path, queryString, null);
+        int httpCode = response.getHttpCode();
+        int code = 0;
+        String requestId = null;
+        String msg;
+        RtcSetMemberBanStatusResponse setMemberBanStatusResponse = null;
+        try {
+            setMemberBanStatusResponse = JSONObject.parseObject(response.getData(), RtcSetMemberBanStatusResponse.class);
+            code = setMemberBanStatusResponse.getCode();
+            requestId = setMemberBanStatusResponse.getRequestId();
+            msg = setMemberBanStatusResponse.getErrmsg();
+        } catch (Exception e) {
+            msg = response.getData();
+        }
+        return new RtcResult<>(response.getEndpoint(), code, httpCode, requestId, response.getTraceId(), msg, setMemberBanStatusResponse);
+    }
+
+    @Override
+    public RtcResult<RtcSetMemberBanStatusResponse> setMemberBanStatusV3(RtcSetMemberBanStatusRequestV3 request) {
+        Map<String, String> queryString = new HashMap<>();
+        queryString.put("cname", request.getCname());
+        Number uid = request.getUid();
+        queryString.put("uid", uid.toString());
+        Boolean isBanned = request.getIsBanned();
+        if (isBanned != null) {
+            queryString.put("isBanned", isBanned.toString());
+        }
+        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.SET_MEMBER_BAN_STATUS_V3, queryString, null);
+        int httpCode = response.getHttpCode();
+        int code = 0;
+        String requestId = null;
+        String msg;
+        RtcSetMemberBanStatusResponse setMemberBanStatusResponse = null;
+        try {
+            setMemberBanStatusResponse = JSONObject.parseObject(response.getData(), RtcSetMemberBanStatusResponse.class);
+            code = setMemberBanStatusResponse.getCode();
+            requestId = setMemberBanStatusResponse.getRequestId();
+            msg = setMemberBanStatusResponse.getErrmsg();
+        } catch (Exception e) {
+            msg = response.getData();
+        }
+        return new RtcResult<>(response.getEndpoint(), code, httpCode, requestId, response.getTraceId(), msg, setMemberBanStatusResponse);
     }
 }
