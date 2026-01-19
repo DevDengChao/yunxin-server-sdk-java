@@ -10,6 +10,7 @@ import com.netease.nim.server.sdk.rtc.room.response.RtcAddMemberToKicklistRespon
 import com.netease.nim.server.sdk.rtc.room.response.RtcCreateRoomResponse;
 import com.netease.nim.server.sdk.rtc.room.response.RtcGetRoomResponse;
 import com.netease.nim.server.sdk.rtc.room.response.RtcListRoomMembersResponse;
+import com.netease.nim.server.sdk.rtc.room.response.RtcMemberRightChangeResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -196,5 +197,47 @@ public class RtcRoomService implements IRtcRoomService {
             msg = response.getData();
         }
         return new RtcResult<>(response.getEndpoint(), code, httpCode, requestId, response.getTraceId(), msg, addMemberToKicklistResponse);
+    }
+
+    @Override
+    public RtcResult<RtcMemberRightChangeResponse> memberRightChangeV2(RtcMemberRightChangeRequestV2 request) {
+        String body = JSONObject.toJSONString(request);
+        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.MEMBER_RIGHT_CHANGE_V2, null, body);
+        int httpCode = response.getHttpCode();
+        int code = 0;
+        String requestId = null;
+        String msg;
+        RtcMemberRightChangeResponse memberRightChangeResponse = null;
+        try {
+            memberRightChangeResponse = JSONObject.parseObject(response.getData(), RtcMemberRightChangeResponse.class);
+            code = memberRightChangeResponse.getCode();
+            requestId = memberRightChangeResponse.getRequestId();
+            msg = memberRightChangeResponse.getErrmsg();
+        } catch (Exception e) {
+            msg = response.getData();
+        }
+        return new RtcResult<>(response.getEndpoint(), code, httpCode, requestId, response.getTraceId(), msg, memberRightChangeResponse);
+    }
+
+    @Override
+    public RtcResult<RtcMemberRightChangeResponse> memberRightChangeV3(RtcMemberRightChangeRequestV3 request) {
+        Map<String, String> queryString = new HashMap<>();
+        queryString.put("cname", request.getCname());
+        String body = JSONObject.toJSONString(request);
+        YunxinApiResponse response = httpClient.executeJson(HttpMethod.POST, RtcRoomUrlContext.MEMBER_RIGHT_CHANGE_V3, queryString, body);
+        int httpCode = response.getHttpCode();
+        int code = 0;
+        String requestId = null;
+        String msg;
+        RtcMemberRightChangeResponse memberRightChangeResponse = null;
+        try {
+            memberRightChangeResponse = JSONObject.parseObject(response.getData(), RtcMemberRightChangeResponse.class);
+            code = memberRightChangeResponse.getCode();
+            requestId = memberRightChangeResponse.getRequestId();
+            msg = memberRightChangeResponse.getErrmsg();
+        } catch (Exception e) {
+            msg = response.getData();
+        }
+        return new RtcResult<>(response.getEndpoint(), code, httpCode, requestId, response.getTraceId(), msg, memberRightChangeResponse);
     }
 }
