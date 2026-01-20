@@ -1,7 +1,7 @@
 package com.netease.nim.server.sdk.rtc.room.request;
 
 /**
- * Created by caojiajun on 2025/6/12
+ * Created by DevDengChao on 2026/01/20
  */
 public class RtcDeleteRoomRequestV3 {
 
